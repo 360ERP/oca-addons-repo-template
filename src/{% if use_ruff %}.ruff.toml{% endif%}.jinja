@@ -9,16 +9,21 @@ fix = true
 extend-select = [
     "B",
     "C90",
-    "E501",  # line too long (default 88)
+    # 360ERP: disable max line length for now, to prevent too many manual edits
+    # on the introduction of pre-commit. Black will apply lenght 88 to most
+    # lines anyway, so this only affects comments and text strings.
+    # "E501",  # line too long (default 88)
     "I",  # isort
     {%- if odoo_version >= 15.0 %}
     "UP",  # pyupgrade
+    "CPY",  # 360ERP: flake8-copyright
     {%- endif %}
     {%- for rule in additional_ruff_rules %}
     "{{ rule }}",
     {%- endfor %}
 ]
 exclude = ["setup/*"]
+preview = true  # 360ERP: required by flake-copyright
 
 [format]
 exclude = ["setup/*"]
@@ -36,3 +41,6 @@ section-order = ["future", "standard-library", "third-party", "odoo", "odoo-addo
 
 [mccabe]
 max-complexity = 16
+
+[lint.flake8-copyright]
+author = "360ERP"

@@ -87,6 +87,12 @@ exclude: |
   /build/|/dist/|
   # Ignore test files in addons
   /tests/samples/.*|
+  # Custom
+  ^360_community/|
+  ^360_hosting/|
+  ^360_generic/|
+  ^community/|
+  ^patchworks/|
   # You don't usually want a bot to modify your legal texts
   (LICENSE.*|COPYING.*)
 default_language_version:
@@ -256,4 +262,11 @@ repos:
       - id: pylint_odoo
         args:
           - --rcfile=.pylintrc-mandatory
-{%- endif %}
+  {%- endif %}
+  # 360ERP: automatically insert copyright
+  - repo: https://github.com/Argmaster/autocopyright
+    # Include https://github.com/Argmaster/autocopyright/pull/53
+    rev: "0d2f17c2f1acc5"
+    hooks:
+      - id: autocopyright
+        args: [-s, "#", -d, custom, -g, "*.py", -l, .copyright_template]
