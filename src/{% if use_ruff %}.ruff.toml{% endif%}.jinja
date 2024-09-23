@@ -23,6 +23,8 @@ extend-select = [
     {%- endfor %}
 ]
 exclude = ["setup/*"]
+# 360ERP: ignore "UP007 Use `X | Y` for type annotations" in pydantic models
+ignore = ["UP007"]
 preview = true  # 360ERP: required by flake-copyright
 
 [format]
@@ -44,3 +46,11 @@ max-complexity = 16
 
 [lint.flake8-copyright]
 author = "360ERP"
+
+# 360ERP: whitelisted fastapi default arguments
+[lint.flake8-bugbear]
+extend-immutable-calls = [
+    "fastapi.Header",
+    "fastapi.Depends",
+    "fastapi.Security",
+]
