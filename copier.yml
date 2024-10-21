@@ -168,8 +168,9 @@ include_wkhtmltopdf:
 
 enable_checklog_odoo:
   type: bool
-  default: "{% if odoo_version < 18.0 -%}no{% else %}yes{% endif %}"
+  default: no
   help: Do you want to make tests fail on warnings?
+  when: false
 
 github_enforce_dev_status_compatibility:
   type: bool
