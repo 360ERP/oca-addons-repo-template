@@ -22,6 +22,7 @@ extend-select = [
     "{{ rule }}",
     {%- endfor %}
 ]
+extend-safe-fixes = ["UP008"]
 exclude = ["setup/*"]
 # 360ERP: ignore "UP007 Use `X | Y` for type annotations" in pydantic models
 ignore = ["UP007"]
