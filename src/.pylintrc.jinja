@@ -12,6 +12,7 @@
 {% endblock %}
 {% block optional_checks %},
     # messages that do not cause the lint step to fail
+{%- if odoo_version < 19 %}
     consider-merging-classes-inherited,
     create-user-wo-reset-password,
     dangerous-filter-wo-user,
@@ -20,7 +21,7 @@
     invalid-commit,
     missing-manifest-dependency,
     missing-newline-extrafiles,
-#    missing-readme,
+#    missing-readme,  We don't enforce Readme
     no-utf8-coding-comment,
     odoo-addons-relative-import,
     old-api7-method-defined,
@@ -28,5 +29,14 @@
     too-complex,
     unnecessary-utf8-coding-comment,
     manifest-external-assets
+{%- else %}
+    consider-merging-classes-inherited,
+    deprecated-module,
+    invalid-commit,
+#    missing-readme,  We don't enforce Readme
+    odoo-addons-relative-import,
+    redefined-builtin,
+    manifest-external-assets
+{%- endif %}
 {% endblock %}
 {%- endif %}
