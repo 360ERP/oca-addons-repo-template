@@ -11,32 +11,26 @@
 # config as a blocking check.
 {% endblock %}
 {% block optional_checks %},
-    # messages that do not cause the lint step to fail
-{%- if odoo_version < 19 %}
-    consider-merging-classes-inherited,
+{%- if odoo_version <= 18 %}
+    missing-manifest-dependency,
+    too-complex,
+{%- endif %}
+{%- if odoo_version >= 15 and odoo_version <= 18 %},
     create-user-wo-reset-password,
     dangerous-filter-wo-user,
-    deprecated-module,
     file-not-used,
-    invalid-commit,
-    missing-manifest-dependency,
     missing-newline-extrafiles,
-#    missing-readme,  We don't enforce Readme
     no-utf8-coding-comment,
-    odoo-addons-relative-import,
     old-api7-method-defined,
-    redefined-builtin,
-    too-complex,
     unnecessary-utf8-coding-comment,
-    manifest-external-assets
-{%- else %}
+{%- endif %}
+    # messages that do not cause the lint step to fail
     consider-merging-classes-inherited,
     deprecated-module,
     invalid-commit,
-#    missing-readme,  We don't enforce Readme
+#    missing-readme,  # 360ERP: don't enforce README
     odoo-addons-relative-import,
     redefined-builtin,
     manifest-external-assets
-{%- endif %}
 {% endblock %}
 {%- endif %}
