@@ -24,9 +24,12 @@ jobs:
 {%- elif odoo_version < 14 %}
         with:
           python-version: "3.8"
-{%- else %}
+{%- elif odoo_version < 20 %}
         with:
           python-version: "3.11"
+{%- else %}
+        with:
+          python-version: "3.12"
 {%- endif %}
           cache: 'pip'
           cache-dependency-path: '.pre-commit-config.yaml'
