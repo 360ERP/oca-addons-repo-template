@@ -1,4 +1,6 @@
-{%- if odoo_version >= 16.0 %}
+{%- if odoo_version >= 20.0 %}
+target-version = "py312"
+{%- elif odoo_version >= 16.0 %}
 target-version = "py310"
 {%- elif odoo_version >= 15.0 %}
 target-version = "py38"
